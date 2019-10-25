@@ -1,0 +1,3 @@
+[submodule "cmake"]
+	path = cmake
+	url = gitlab@gitlab.dynamic.nsn-net.net:coding-dojo/cmake-utils.git

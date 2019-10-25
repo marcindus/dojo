@@ -3,7 +3,46 @@ Coding dojo, assesments from https://cyber-dojo.org/
 
 
 
-#maze
+# Preparation 
+
+### Required packages:
+* cmake
+* git
+* C++17 compliant compiler
+
+### Setup
+1. Prepare submodules used by this repository
+```
+$ git submodule init
+$ git submodule update
+```
+2. Create a build directory (ex. $ mkdir ../build)
+3. Move to this directory ($ cd ../build)
+4. Run cmake with path to this repository ($ cmake ../workshop231118)
+5. Run make ($ make)
+
+GTest and GMock libraries will be downloaded and compiled during the first build.
+In case of timeouts during gtest downloads, please check git proxy settings.
+
+### Adding new files
+To add a new file to compilation of main application,
+for example foo.cpp, add it to add_library(binary_name ...) clause
+in CMakeLists.txt.
+```
+add_library(binary_name
+    ...
+    foo.cpp)
+```
+To add a new test file, add it to add_executable(tests_binary_name ...) clause
+in CMakeLists.txt.
+
+
+
+
+
+#Assesements
+
+##maze
 
 Alice found herself very tiny and wandering around Wonderland.
 Even the grass around her seemed like a maze.
@@ -33,7 +72,7 @@ Source: https://github.com/gigasquid/wonderland-clojure-katas
 
 
 
-#saddle points
+##saddle points
 
 Write a program to search for the "saddle points" in
 a 5 by 5 array of integers. A saddle point is a cell
@@ -45,4 +84,5 @@ program finds. Print out "No saddle points" if there
 are none.
 
 [source: http://users.csc.calpoly.edu/~jdalbey/103/Projects/ProgrammingPractice.html]
+
 
