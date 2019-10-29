@@ -4,6 +4,16 @@
 #include <unordered_map>
 #include <vector>
 
+
+struct LCD
+{
+    std::string print(int number);
+};
+
+std::deque<int> getDigits(int num);
+
+
+
 static std::unordered_map<int, std::array<std::string, 3>>
                                     numbers = {{1, {"...", "..|", "..|"}},
                                                {2, {"._.", "._|", "|_."}},
@@ -36,19 +46,13 @@ std::string LCD::print(int number)
         {
             row1 += l_number->second[0];
             row2 += l_number->second[1];
-            row3 += l_number->seond[2];
+            row3 += l_number->second[2];
         }
     }
     return endLine(row1) + endLine(row2) + row3;
 }
 
-struct LCD
-{
-    std::string print(int number);
-};
-
-
-inline std::deque<int> getDigits(int num)
+std::deque<int> getDigits(int num)
 {
     std::deque<int> result;
 
