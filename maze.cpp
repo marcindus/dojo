@@ -11,12 +11,12 @@
 using namespace ::testing;
 using namespace std;
 using Maze = vector< vector<char> >;
-using Position = pair<int, int > ;
+using Position = pair< int,  int > ;
 
 string toString(Maze& mz);
 string toString(Position& mz);
-int countRows(const Maze& mz);
-int countColumns(const Maze& mz);
+ int countRows(const Maze& mz);
+ int countColumns(const Maze& mz);
 Position findStart(const Maze& mz, const char start_symbol);
 char getField(Position position, const Maze& mz);
 void setFieldVisited(Position position, Maze& mz);
@@ -41,12 +41,12 @@ string toString(Maze& mz) {
 return stm.str();
 }
 
-int countRows(const Maze& mz) { return mz.size(); }
-int countColumns(const Maze& mz) { return mz[0].size(); }
+ int countRows(const Maze& mz) { return mz.size(); }
+ int countColumns(const Maze& mz) { return mz[0].size(); }
 
 Position findStart(Maze& mz, const char start_symbol) {
-    for(int i = 0 ; i < countRows(mz) ; i++) {
-        for(int j = 0 ; j < countColumns(mz) ; j++) {
+    for( int i = 0 ; i < countRows(mz) ; i++) {
+        for( int j = 0 ; j < countColumns(mz) ; j++) {
             if(mz[i][j] == start_symbol) {
                 mz[i][j] = 'X';
                 return make_pair(i,j);
@@ -126,7 +126,8 @@ struct Node {
 };
 
 shared_ptr<Node> insertNode(shared_ptr<Node> root, Position& position) {
-    shared_ptr<Node> tmp = make_shared<Node>;
+    shared_ptr<Node> tmp = make_shared<Node>();
+//    shared_ptr<Node>  tmp =  new Node;
     tmp->position = position;
     tmp->parent = root;
     root->children.push_back(tmp);
@@ -154,11 +155,12 @@ TEST_F(MazeTest, treeSimplePrintTest) {
 
 
     Position start = {0,0};
-    Node *current = new Node;
+    shared_ptr<Node> current = make_shared<Node>();
     current->parent = nullptr;
     current->position = start;
-    Node *tmp;
-    queue<Node *> nodes;
+
+    shared_ptr<Node> tmp = make_shared<Node>();
+    queue< shared_ptr<Node>> nodes;
     nodes.push(current);
     while(!nodes.empty()) {
         for(auto v : lookAround(current->position, maze, visited)) {

@@ -2,7 +2,8 @@ cmake_minimum_required(VERSION 3.5)
 project(dojo)
 
 set(CMAKE_CXX_STANDARD 14)
-add_compile_options(-Wall -Wextra -pedantic -Werror)
+#add_compile_options(-Wall -Wextra -pedantic -Werror)
+add_compile_options(-Wall -Wextra )
 
 include(cmake/GTest.cmake)
 
