@@ -18,14 +18,15 @@ include_directories(
 
 #add_executable(test_saddle saddle.cpp)
 #add_executable(test_lcd lcd.cpp)
-add_executable(test_maze maze.cpp)
+#add_executable(test_maze maze.cpp)
+add_executable(test_balanced isBalanced.cpp)
 
-target_link_libraries(test_maze
+target_link_libraries(test_balanced
         gtest
         gmock
         gtest_main)
 
-set_property(TARGET test_maze PROPERTY CXX_STANDARD 14)
+set_property(TARGET test_balanced PROPERTY CXX_STANDARD 14)
 
 #this is a bit of overkill, but it enables to run ctest
 enable_testing()

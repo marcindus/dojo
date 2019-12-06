@@ -135,9 +135,6 @@ shared_ptr<Node> insertNode(shared_ptr<Node> root, Position& position) {
 }
 
 
-
-//--------------------------Tests----------------------
-
 struct MazeTest : public ::testing::Test {
         Maze maze = {{ 'S', '0', '1'},
                      { '1', '0', '1'},
