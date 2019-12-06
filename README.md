@@ -10,7 +10,7 @@ Problems from https://cyber-dojo.org/
 ### Setup
 1. Create a build directory (ex. $ mkdir ../build)
 2. Move to this directory ($ cd ../build)
-3. Run cmake with path to this repository ($ cmake ../workshop231118)
+3. Run cmake with path to this repository ($ cmake ../dojo )
 4. Run make ($ make)
 
 GTest and GMock libraries will be downloaded and compiled during the first build.
