@@ -19,17 +19,19 @@ struct Coordinates {
 struct Buffer
 {
     Buffer() {};
-    std::deque<char>  buffer{'N', 'W','S','E'};
-    char back_ = buffer.back();
-
-    void rotate_left() {
-        buffer.pop_back();
-        buffer.push_front(back_);
-    }
+    std::deque<char>  buffer{'N','W','S','E'};
+    char tmp;
 
     void rotate_right() {
+        tmp = buffer.front();
         buffer.pop_front();
-        buffer.push_back(back_);
+        buffer.push_back(tmp);
+    }
+
+    void rotate_left() {
+        tmp = buffer.back();
+        buffer.pop_back();
+        buffer.push_front(tmp);
     }
     char get_current() {
         return buffer.front();
@@ -39,15 +41,25 @@ struct Buffer
 struct Rover {
 
     Coordinates coords = Coordinates(0,0);
-
     Buffer buf;
 
-    void goForward() {
-        coords.y++;
+    Rover(int x, int y) : coords(x,y) {};
+    Rover() {};
+
+    void executeCommand(std::string str) {
+        for( auto i : str) {
+            if(i  =='R') this->turnRight();
+            else if(i  =='L') this->turnLeft();
+            else if(i  =='M') this->goForward();
+        }
     }
 
-    void goBackward() {
-        coords.x++;
+    void goForward() {
+        if(buf.get_current() == 'N') coords.y++;
+        else if(buf.get_current() == 'W') coords.x++;
+        else if(buf.get_current() == 'S') coords.y--;
+        else if(buf.get_current() == 'E') coords.x--;
+        else {}
     }
 
     char getDirection() {
@@ -64,7 +76,7 @@ struct Rover {
         buf.rotate_right();
 
     }
-    void foForward() {
+    void turnLeft() {
         buf.rotate_left();
     }
 };
@@ -73,13 +85,61 @@ struct Rover {
 //---------------------------------------------------------------------
 using namespace ::testing;
 
+TEST(Empty, acceptance) {
+    Rover rover(1,2);
+    rover.executeCommand("LMLMLMLMM");
+    EXPECT_EQ(rover.get_position(), "1 3 N");
+}
 
+TEST(Empty, testParser) {
+    Rover rover;
+    rover.executeCommand("RMMMM");
+}
+
+
+TEST(Empty, goForward) {
+    Rover rover;
+    rover.goForward();
+    EXPECT_EQ(rover.get_position(), "0 1 N");
+}
+
+TEST(Empty, turnRightAndGoForward)
+{
+    Rover rover;
+    rover.turnRight();
+    rover.goForward();
+    rover.goForward();
+    rover.goForward();
+    rover.goForward();
+    EXPECT_EQ(rover.get_position(), "4 0 W");
+}
+
+
+
+TEST(Empty, turnRightAndGoForwardLeftForward)
+{
+    Rover rover;
+    rover.turnRight();
+    rover.goForward();
+    rover.turnLeft();
+    rover.goForward();
+    EXPECT_EQ(rover.get_position(), "1 1 N");
+}
 
 TEST(Empty, sanity)
 {
     Rover rover;
     EXPECT_EQ(rover.get_position(), "0 0 N");
 }
+
+TEST(Empty, turnRightAndBack)
+{
+    Rover rover;
+    rover.turnRight();
+    rover.turnLeft();
+    EXPECT_EQ(rover.get_position(), "0 0 N");
+}
+
 
 
 
