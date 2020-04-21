@@ -117,7 +117,7 @@ For example:
 
 ## Cipher
 
-Clean code challenge from https://coders.school/wyzwanie-st
+Clean code challenge from https://coders.school/wyzwanie-stl/
 
 
 
